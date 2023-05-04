@@ -1,0 +1,2 @@
+git remote add <link>
+git push origin master
