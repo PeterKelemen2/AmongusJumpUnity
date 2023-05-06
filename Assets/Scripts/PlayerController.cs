@@ -10,32 +10,44 @@ public class PlayerController : MonoBehaviour
     public GameManager gameManager;
     Rigidbody rb;
     public GameObject tile;
+
     float speed = 5;
-    public float upForce = 13;
+    public float upForce = 20;
     public float physicsMultiplier = 1;
-    float auxPM;
+
     public float speedMultiplier;
-    bool jumped = false;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         Physics.gravity *= physicsMultiplier;
         rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         Debug.Log("Triggered jump");
-        // rb.AddForce(Vector3.up * upForce/2, ForceMode.Impulse);
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
-
+        rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
     }
+
+    
+
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Manual jump");
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
         }
 
