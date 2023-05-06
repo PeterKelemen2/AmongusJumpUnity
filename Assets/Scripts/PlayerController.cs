@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.UIElements;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public float speedMultiplier;
 
+    public float maxHeight = 0;
+
 
 
     // Start is called before the first frame update
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        Debug.Log("Triggered jump");
+        // Debug.Log("Triggered jump");
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        checkMaxHeight();
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("Manual jump");
@@ -60,5 +65,14 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
+    }
+
+    void checkMaxHeight()
+    {
+        if (transform.position.y > maxHeight)
+        {
+            maxHeight = transform.position.y;
+        }
+        //Debug.Log("Max Height: " + maxHeight); // 3,5 for one jump
     }
 }
