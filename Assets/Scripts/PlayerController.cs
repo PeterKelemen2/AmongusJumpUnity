@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public GameObject tile;
 
-    float speed = 5;
-    public float upForce = 20;
+    float speed = 5f;
+    public float upForce = 20f;
     public float physicsMultiplier = 1;
 
     public float speedMultiplier;
@@ -35,18 +35,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        // Debug.Log("Triggered jump");
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        if (other.CompareTag("tile"))
+        {
+            // Debug.Log("Triggered jump");
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
 
-        rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+        }
+        
     }
 
     
 
     void Update()
     {
-
         checkMaxHeight();
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -59,11 +62,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && transform.position.x < 5)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
+            
+            //rb.AddForce(Vector3.right * speed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A) && transform.position.x > -5)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+            // rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
         }
     }
 

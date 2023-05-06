@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -14,14 +15,18 @@ public class GameManager : MonoBehaviour
     public GameObject camera;
     public GameObject player;
     bool movable = false;
+    bool firstJumpDone = false;
 
     //private float speed = 2 * Time.deltaTime; // camera moving speed
     float currentPosX = 0;
     float currentPosY = 0;
     float currentPosZ = 0;
 
-    private float currentHeight = 0;
-    private float secondaryHeight = 0;
+    public float currentHeight = 0;
+    public float secondaryHeight = 0;
+
+    public Transform target;
+    public Vector3 offset;
 
     void Start()
     {
@@ -39,6 +44,8 @@ public class GameManager : MonoBehaviour
         currentHeight = player.transform.position.y;
         checkIfCameraMovable();
 
+        // followPlayer();
+
 
 
         //Debug.Log("\nCurrent Height: " + currentHeight + "\n" + "Secondary Height: " + secondaryHeight);
@@ -52,19 +59,26 @@ public class GameManager : MonoBehaviour
 
     public void checkIfCameraMovable()
     {
-        movable = false;
+        // movable = false;
 
-        if(currentHeight - secondaryHeight > 3.2f)
+        if(currentHeight - secondaryHeight > 3.5f)
         {
             Debug.Log("Camera is movable!!");
-            movable=true;
-            //moveCamera();
+            movable = true;
+
+            // moveCamera();
             StartCoroutine(MoveFunction());
+
             secondaryHeight = currentHeight;
             
         }
-
+        movable = false;
         
+    }
+
+    void followPlayer()
+    {
+        camera.gameObject.transform.position = target.position + offset;
     }
 
     public void moveCamera()
@@ -73,7 +87,7 @@ public class GameManager : MonoBehaviour
         // desired second pos = 6.5f
         // = 3.24f movement
 
-        if (movable)
+        if (movable && !firstJumpDone)
         {
             float step = 1 * Time.deltaTime;
             
@@ -81,11 +95,22 @@ public class GameManager : MonoBehaviour
             currentPosY = camera.transform.position.y;
             currentPosZ = camera.transform.position.z;
 
-            //transform.position = Vector3.MoveTowards(transform.position, new Vector3(currentPosX,currentPosY+3f, currentPosZ), step);
-            camera.transform.Translate(
-                Vector3.MoveTowards(new Vector3(currentPosX,currentPosY,currentPosZ),
-                new Vector3(0f, currentPosY + 3, -7f), 
-                1));
+            // Translate oldPos = Vector3(currentPosX, currentPosY, currentPosZ);
+
+            float toMove = currentHeight - secondaryHeight; // 3.4f;
+
+
+            camera.transform.position = new Vector3(0f, currentPosY + toMove/2, -7f);
+        }
+        else
+        {
+            currentPosX = camera.transform.position.x;
+            currentPosY = camera.transform.position.y;
+            currentPosZ = camera.transform.position.z;
+
+            float toMove = currentHeight - secondaryHeight;
+
+            camera.transform.position = new Vector3(0f, currentPosY + toMove, -7f);
         }
 
 
@@ -99,22 +124,27 @@ public class GameManager : MonoBehaviour
         currentPosY = camera.transform.position.y;
         currentPosZ = camera.transform.position.z;
 
+        // TODO: Ha elmenne a kamera, akkor a secondary height alapján
+        // visszamenjen (*0,9f pl)
+
+        float toMove = (currentHeight - secondaryHeight) * 0.7f;
+
         float timeSinceStarted = 0f;
         while (true)
         {
             timeSinceStarted += Time.deltaTime;
             camera.transform.position = Vector3.Lerp(camera.transform.position, 
-                new Vector3(0f, currentPosY + 3, -7f), timeSinceStarted);
+                new Vector3(0f, currentPosY + toMove, -7f), timeSinceStarted);
 
             // If the object has arrived, stop the coroutine
-            if (camera.transform.position == new Vector3(0f, currentPosY + 2.7f, -7f))
+            if (camera.transform.position == new Vector3(0f, currentPosY + toMove, -7f))
             {
+                StopAllCoroutines();
                 yield break;
             }
 
             // Otherwise, continue next frame
             yield return null;
-            //StopAllCoroutines();
         }
     }
 
