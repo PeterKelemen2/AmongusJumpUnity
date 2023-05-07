@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     public Transform target;
     public Vector3 offset;
 
+    public GameObject tileCombination;
+
     void Start()
     {
 
@@ -36,6 +38,15 @@ public class GameManager : MonoBehaviour
 
         currentHeight = player.transform.position.y;
         secondaryHeight = currentHeight;
+
+        Instantiate(tileCombination, 
+            new Vector3(-7.6f, -0.4f, 56f),
+            tileCombination.transform.rotation);
+
+        /*
+         Instantiate(animals[idx], 
+            new Vector3(Random.Range(-17f,17f), 0, 20), 
+            animals[idx].transform.rotation);*/
 
     }
 
