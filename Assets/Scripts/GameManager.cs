@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,12 +11,15 @@ using static UnityEngine.GraphicsBuffer;
 public class GameManager : MonoBehaviour
 {
     public GameObject tile;
-    int nrOfTiles = 0;
     private GameObject[] getCount;
     public GameObject camera;
     public GameObject player;
-    bool movable = false;
-    bool firstJumpDone = false;
+    private bool movable = false;
+
+
+    //background.GetComponent<RepeatBackground>().enabled= false;
+
+
 
     //private float speed = 2 * Time.deltaTime; // camera moving speed
     float currentPosX = 0;
@@ -24,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public float currentHeight = 0;
     public float secondaryHeight = 0;
+    public float maxHeight = 0;
+    private float toMove;
 
     public Transform target;
     public Vector3 offset;
@@ -39,9 +45,11 @@ public class GameManager : MonoBehaviour
         currentHeight = player.transform.position.y;
         secondaryHeight = currentHeight;
 
-        Instantiate(tileCombination, 
+        /*
+         Instantiate(tileCombination, 
             new Vector3(-7.6f, -0.4f, 56f),
             tileCombination.transform.rotation);
+        */
 
         /*
          Instantiate(animals[idx], 
@@ -53,38 +61,35 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         currentHeight = player.transform.position.y;
+        getMaxHeight();
         checkIfCameraMovable();
-
-        // followPlayer();
-
-
 
         //Debug.Log("\nCurrent Height: " + currentHeight + "\n" + "Secondary Height: " + secondaryHeight);
         
     }
 
-    /*
-     currentHeight = player.transform.position.y;
-        secondaryHeight = currentHeight;
-     */
+    public int calculatePlayerPoints()
+    {
+        
+        int points = Convert.ToInt32(maxHeight);
+        // Debug.Log("Points: " + points);
+        return points;
+
+    }
 
     public void checkIfCameraMovable()
     {
-        // movable = false;
-
-        if(currentHeight - secondaryHeight > 3.5f)
+        if(currentHeight - secondaryHeight > 3.6f)
         {
             Debug.Log("Camera is movable!!");
             movable = true;
 
-            // moveCamera();
-            StartCoroutine(MoveFunction());
+            StartCoroutine(MoveCamera());
 
             secondaryHeight = currentHeight;
             
         }
         movable = false;
-        
     }
 
     void followPlayer()
@@ -92,54 +97,36 @@ public class GameManager : MonoBehaviour
         camera.gameObject.transform.position = target.position + offset;
     }
 
-    public void moveCamera()
+    public void getMaxHeight() // Calculates the maximum height the player has reached
     {
-        // first pos = 3.26f
-        // desired second pos = 6.5f
-        // = 3.24f movement
-
-        if (movable && !firstJumpDone)
+        if (currentHeight > maxHeight)
         {
-            float step = 1 * Time.deltaTime;
-            
-            currentPosX = camera.transform.position.x;
-            currentPosY = camera.transform.position.y;
-            currentPosZ = camera.transform.position.z;
-
-            // Translate oldPos = Vector3(currentPosX, currentPosY, currentPosZ);
-
-            float toMove = currentHeight - secondaryHeight; // 3.4f;
-
-
-            camera.transform.position = new Vector3(0f, currentPosY + toMove/2, -7f);
-        }
-        else
-        {
-            currentPosX = camera.transform.position.x;
-            currentPosY = camera.transform.position.y;
-            currentPosZ = camera.transform.position.z;
-
-            float toMove = currentHeight - secondaryHeight;
-
-            camera.transform.position = new Vector3(0f, currentPosY + toMove, -7f);
+            maxHeight = currentHeight;    
         }
 
-
-        movable = false;
-        
     }
 
-    IEnumerator MoveFunction()
+    IEnumerator MoveCamera()
     {
         currentPosX = camera.transform.position.x;
         currentPosY = camera.transform.position.y;
         currentPosZ = camera.transform.position.z;
 
-        // TODO: Ha elmenne a kamera, akkor a secondary height alapján
-        // visszamenjen (*0,9f pl)
+        /*
+         * Camera's default Y is 3.25
+         * If the player's maximum differs by 3 from camera Y,
+         * Then the camera should move more
+         */
 
-        float toMove = (currentHeight - secondaryHeight) * 0.7f;
-
+        if (maxHeight - currentPosY > 3f)
+        {
+            toMove = (currentHeight - secondaryHeight);
+        }
+        else
+        {
+            toMove = (currentHeight - secondaryHeight) * 0.85f;
+        }
+          
         float timeSinceStarted = 0f;
         while (true)
         {
@@ -153,7 +140,6 @@ public class GameManager : MonoBehaviour
                 StopAllCoroutines();
                 yield break;
             }
-
             // Otherwise, continue next frame
             yield return null;
         }

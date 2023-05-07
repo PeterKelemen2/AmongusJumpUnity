@@ -11,6 +11,7 @@ TagManager:
   - TC3
   - TC4
   - TC5
+  - StartCamera
   layers:
   - Default
   - TransparentFX
