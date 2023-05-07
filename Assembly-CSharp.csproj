@@ -61,6 +61,8 @@
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\DetectCollision.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Scroller.cs" />
+    <Compile Include="Assets\Scripts\LevelManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
