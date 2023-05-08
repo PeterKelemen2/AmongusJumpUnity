@@ -14,13 +14,11 @@ public class PlayerController : MonoBehaviour
 
     float speed = 5f;
     public float upForce = 20f;
-    public float physicsMultiplier = 1;
+    private float physicsMultiplier = 1f;
 
     public float speedMultiplier;
 
     public float maxHeight = 0;
-
-
 
     // Start is called before the first frame update
     void Start()

@@ -31,14 +31,16 @@ public class LevelManager : MonoBehaviour
 
     public void loadPlayScene()
     {
-        SceneManager.UnloadSceneAsync(playScene);
+        //SceneManager.UnloadSceneAsync(playScene);
+        //SceneManager.UnloadSceneAsync(playScene);
         SceneManager.LoadScene(playScene);
         
     }
 
     public void loadMenuScene()
     {
+        //SceneManager.UnloadSceneAsync(playScene);
         SceneManager.LoadScene(menuScene);
-        SceneManager.UnloadSceneAsync(playScene);
+        
     }
 }
