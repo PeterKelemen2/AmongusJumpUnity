@@ -351,6 +351,7 @@
 "Assets/Scripts/PlatformController.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/Scroller.cs"
+"Assets/Scripts/TileSpawner.cs"
 "Assets/Scripts/UIController.cs"
 -langversion:9.0
 
