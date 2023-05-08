@@ -12,6 +12,7 @@ TagManager:
   - TC4
   - TC5
   - StartCamera
+  - TileComb
   layers:
   - Default
   - TransparentFX

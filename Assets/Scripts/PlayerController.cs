@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         Physics.gravity *= physicsMultiplier;
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
@@ -45,8 +44,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
-    
 
     void Update()
     {
@@ -81,5 +78,10 @@ public class PlayerController : MonoBehaviour
             maxHeight = transform.position.y;
         }
         //Debug.Log("Max Height: " + maxHeight); // 3,5 for one jump
+    }
+
+    public void turnOffPhysics()
+    {
+        physicsMultiplier = 0;
     }
 }

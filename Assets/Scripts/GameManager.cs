@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     private GameObject[] getCount;
     public GameObject camera;
     public GameObject player;
+    public GameObject uiController;
+    public bool isDead = false;
     private bool movable = false;
 
 
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public Transform target;
     public Vector3 offset;
+    public float cameraY;
 
     public GameObject tileCombination;
 
@@ -61,9 +65,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         currentHeight = player.transform.position.y;
+        cameraY = camera.transform.position.y;
+
         getMaxHeight();
         checkIfCameraMovable();
 
+        checkIfDead();
         //Debug.Log("\nCurrent Height: " + currentHeight + "\n" + "Secondary Height: " + secondaryHeight);
         
     }
@@ -145,12 +152,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void isDead()
+    public void checkIfDead()
     {
-        if (secondaryHeight - currentHeight > 5f)
+        if (camera.transform.position.y - player.transform.position.y > 5f)
         {
-            Debug.Log("You dead");
+            uiController.GetComponent<UIController>().setUpGameOverText();
+            isDead = true;
+            Debug.Log("Dead: " + isDead);
+            player.GetComponent<PlayerController>().enabled = false;
+            player.SetActive(false);
+            
         }
+        isDead = false;
+    }
+
+    public void setUpGameOverText()
+    {
+
     }
 
     
