@@ -17,17 +17,14 @@ public class GameManager : MonoBehaviour
     private GameObject[] getCount;
     public GameObject camera;
 
-    public GameObject player; // need to set this to an array
-    public GameObject[] playerArray;
+    public GameObject[] player; // need to set this to an array
+    public GameObject mogus;
 
     public GameObject uiController;
     public bool isDead = false;
     private bool movable = false;
     private bool alreadyChecked = false;
 
-    public GameObject redPlayer;
-    public GameObject goldPlayer;
-    public GameObject greenPlayer;
     [SerializeField] private int modelChosen = 0;
 
     public int allCoins = 0;
@@ -53,22 +50,17 @@ public class GameManager : MonoBehaviour
         // player = new GameObject();
         // getCount = GameObject.FindGameObjectsWithTag("tile");
         // Debug.Log("Number of tiles: " + getCount.Length);
-        
+
         // player = goldPlayer;
 
-        currentHeight = player.transform.position.y;
+        
+        getModelChosen();
+        setUpPlayerArray();
+
+        currentHeight = player[getModelChosen()].transform.position.y;
         secondaryHeight = currentHeight;
         readAllCoinsFromFile();
-        getModelChosen();
         
-        redPlayer.SetActive(false);
-        goldPlayer.SetActive(false);
-        greenPlayer.SetActive(false);
-
-        playerArray[0] = goldPlayer;
-        playerArray[1] = greenPlayer;
-
-        playerArray[0].SetActive(true);
 
         /*
          Instantiate(tileCombination, 
@@ -80,15 +72,11 @@ public class GameManager : MonoBehaviour
          Instantiate(animals[idx], 
             new Vector3(Random.Range(-17f,17f), 0, 20), 
             animals[idx].transform.rotation);*/
-
-        playerArray[0] = goldPlayer;
-        playerArray[0].SetActive(true);
-
     }
 
     void Update()
     {
-        currentHeight = player.transform.position.y;
+        currentHeight = player[getModelChosen()].transform.position.y;
         cameraY = camera.transform.position.y;
 
         getMaxHeight();
@@ -100,14 +88,30 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void setUpPlayerArray()
+    {
+        /*
+        player[0] = redPlayer;
+        player[1] = goldPlayer;
+        player[2] = greenPlayer;
+        */
+        player[0].SetActive(false);
+        player[1].SetActive(false);
+        player[2].SetActive(false);
+
+        player[getModelChosen()].SetActive(true);
+
+    }
+
     static readonly string modelFile = @"Assets\Model.txt";
-    private void getModelChosen()
+    private int getModelChosen()
     { 
         if (File.Exists(modelFile))
         {
             string modelChosenString = File.ReadLines(modelFile).Last();
             modelChosen = Int32.Parse(modelChosenString);  
         }
+        return modelChosen;
         /*
 
         switch (modelChosen)
@@ -178,7 +182,7 @@ public class GameManager : MonoBehaviour
 
     public void calculateAllCoins()
     {
-        allCoins = player.GetComponent<PlayerController>().allCoinsGotGiver();
+        allCoins = player[modelChosen].GetComponent<PlayerController>().allCoinsGotGiver();
     }
 
     public int giveAllCoinsToPlayerController()
@@ -282,7 +286,7 @@ public class GameManager : MonoBehaviour
 
     public void checkIfDeadAdvanced()
     {
-        if (player.GetComponent<PlayerController>().getDeathStatus() && !wasDead) // true if dead
+        if (player[modelChosen].GetComponent<PlayerController>().getDeathStatus() && !wasDead) // true if dead
         {
             isDead = true;
             writeAllCoinsToFile();
@@ -291,8 +295,8 @@ public class GameManager : MonoBehaviour
             
             Debug.Log("Dead: " + isDead);
 
-            player.GetComponent<PlayerController>().enabled = false;
-            player.SetActive(false);
+            player[modelChosen].GetComponent<PlayerController>().enabled = false;
+            player[modelChosen].SetActive(false);
 
             wasDead = true;
         }
