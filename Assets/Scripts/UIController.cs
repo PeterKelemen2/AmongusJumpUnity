@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
     public Button restartButton;
 
     private int coins;
+    
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class UIController : MonoBehaviour
         endPointsText.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+
+        //coins = gameObject.GetComponent<PlayerController>().allCoinsGotGiver();
     }
 
     void Update()
