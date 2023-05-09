@@ -596,6 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: PlayScene
   sceneToUnload: StartMenu
+  playScene: 
+  menuScene: 
 --- !u!4 &1298602064
 Transform:
   m_ObjectHideFlags: 0

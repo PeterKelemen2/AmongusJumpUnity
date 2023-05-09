@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 // using UnityEditor.UIElements;
 // using UnityEditorInternal;
 using UnityEngine;
@@ -20,16 +23,23 @@ public class PlayerController : MonoBehaviour
 
     public float maxHeight = 0;
 
+    public bool playerIsDead = false;
+
     [SerializeField] private int coinsCollected = 0;
+    [SerializeField] private int allCoinsGot;
 
     // Start is called before the first frame update
     void Start()
     {
+        readAllCoinsFromFile();
+
         Physics.gravity *= physicsMultiplier;
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+
+        
     }
 
     public void OnTriggerStay(Collider other)
@@ -48,8 +58,50 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Coin aquired");
             other.gameObject.SetActive(false);
             coinsCollected++;
+            allCoinsGot++;
 
         }
+
+        if (other.CompareTag("MainCamera"))
+        {
+            playerIsDead = true;
+        }
+    }
+    static readonly string saveFile = @"Assets\CoinsSave.txt";
+
+    public bool getDeathStatus()
+    {
+        if (playerIsDead)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void readAllCoinsFromFile()
+    {
+        if (File.Exists(saveFile))
+        {
+            Debug.Log("File Found!");
+            string amount = File.ReadLines(saveFile).Last();            
+            allCoinsGot = Int32.Parse(amount);
+            Debug.Log("Player Controller allCoinsGot = " + allCoinsGot);
+        }
+    }
+
+    public int getCoinsCollected()
+    {
+        return coinsCollected;
+    }
+
+    public int getAllCoinsFromGameManager()
+    {
+        return gameManager.giveAllCoinsToPlayerController();
+    }
+
+    public int allCoinsGotGiver()
+    {
+        return allCoinsGot;
     }
 
     void Update()
@@ -91,4 +143,5 @@ public class PlayerController : MonoBehaviour
     {
         physicsMultiplier = 0;
     }
+
 }

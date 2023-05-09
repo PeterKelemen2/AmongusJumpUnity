@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public GameManager gameManager;
+    public GameObject player;
     public TextMeshProUGUI points;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI endPointsText;
+    public TextMeshProUGUI coinsGot;
+    public TextMeshProUGUI allCoinsText;
 
     public Button menuButton;
     public Button restartButton;
+
+    private int coins;
 
     void Start()
     {
@@ -25,15 +30,21 @@ public class UIController : MonoBehaviour
     void Update()
     {
         calculatePlayerPoints();
-        if (gameManager.isDead)
-        {
-
-        }
+        calculateCoinsGot();
     }
 
     public void calculatePlayerPoints()
     {
         points.SetText("Points: " + gameManager.calculatePlayerPoints());
+    }
+
+    public void calculateCoinsGot()
+    {
+        // uiController.GetComponent<UIController>().setUpGameOverText()
+        coins = player.GetComponent<PlayerController>().getCoinsCollected();
+
+        coinsGot.SetText("Coins: " + player.GetComponent<PlayerController>().getCoinsCollected());
+        allCoinsText.SetText("All coins: " + player.GetComponent<PlayerController>().allCoinsGotGiver());
     }
 
     public void setUpGameOverText()

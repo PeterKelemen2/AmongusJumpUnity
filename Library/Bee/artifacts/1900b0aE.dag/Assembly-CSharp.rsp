@@ -348,6 +348,7 @@
 "Assets/Scripts/BackgroundController.cs"
 "Assets/Scripts/DetectCollision.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/InfoGetter.cs"
 "Assets/Scripts/LevelManager.cs"
 "Assets/Scripts/PlatformController.cs"
 "Assets/Scripts/PlayerController.cs"

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEditor;
 // using UnityEditor.UIElements;
@@ -18,10 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject uiController;
     public bool isDead = false;
     private bool movable = false;
+    private bool alreadyChecked = false;
 
-
-    //background.GetComponent<RepeatBackground>().enabled= false;
-
+    public int allCoins = 0;
 
 
     //private float speed = 2 * Time.deltaTime; // camera moving speed
@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
         currentHeight = player.transform.position.y;
         secondaryHeight = currentHeight;
+        readAllCoinsFromFile();
 
         /*
          Instantiate(tileCombination, 
@@ -70,7 +71,8 @@ public class GameManager : MonoBehaviour
         getMaxHeight();
         checkIfCameraMovable();
 
-        checkIfDead();
+        //checkIfDead();
+        checkIfDeadAdvanced();
         //Debug.Log("\nCurrent Height: " + currentHeight + "\n" + "Secondary Height: " + secondaryHeight);
         
     }
@@ -84,6 +86,78 @@ public class GameManager : MonoBehaviour
 
     }
 
+    static readonly string rootFolder = @"Assets\";
+    static readonly string saveFile = @"Assets\CoinsSave.txt";
+
+
+    private void readAllCoinsFromFile()
+    {
+        if (File.Exists(saveFile))
+        {
+            Debug.Log("File Found!");
+            string[] lines = File.ReadAllLines(saveFile);
+            foreach(string line in lines)
+            {
+                if(line.Equals(lines))
+                {
+                    allCoins = Int32.Parse(line);
+                    Debug.Log(allCoins);
+                }
+                
+            }
+        }
+    }
+
+    public void writeAllCoinsToFile()
+    {
+        string path = "Assets/CoinsSave.txt";
+        string allCoinsString;
+
+        calculateAllCoins();
+
+        allCoinsString = allCoins.ToString();
+
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(allCoinsString, true);
+        writer.Close();
+    }
+
+    public void calculateAllCoins()
+    {
+        allCoins = player.GetComponent<PlayerController>().allCoinsGotGiver();
+    }
+
+    public int giveAllCoinsToPlayerController()
+    {
+        calculateAllCoins();
+        return allCoins;
+    }
+
+    /*
+    public void aux()
+    {
+        
+
+        if (File.Exists(textFile))
+        {
+            // Read file using StreamReader. Reads file line by line
+            using (StreamReader file = new StreamReader(textFile))
+            {
+                int counter = 0;
+                string ln;
+
+                while ((ln = file.ReadLine()) != null)
+                {
+                    Console.WriteLine(ln);
+                    counter++;
+                }
+                file.Close();
+                Console.WriteLine("File has {counter} lines.");
+            }
+        }
+    }
+    */
     public void checkIfCameraMovable()
     {
         if(currentHeight - secondaryHeight > 3.6f)
@@ -152,18 +226,47 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Got a better solution than this
+    /* 
     public void checkIfDead()
     {
-        if (camera.transform.position.y - player.transform.position.y > 5f)
+        if (!isDead && !wasDead) { 
+            if (camera.transform.position.y - player.transform.position.y > 5f)
+            {
+                writeAllCoinsToFile();
+            
+                uiController.GetComponent<UIController>().setUpGameOverText();
+                isDead = true;
+                Debug.Log("Dead: " + isDead);
+                player.GetComponent<PlayerController>().enabled = false;
+                player.SetActive(false);
+
+                wasDead = true;
+            }
+            
+
+        }
+    }
+    */
+
+    public bool wasDead = false;
+
+    public void checkIfDeadAdvanced()
+    {
+        if (player.GetComponent<PlayerController>().getDeathStatus() && !wasDead) // true if dead
         {
-            uiController.GetComponent<UIController>().setUpGameOverText();
             isDead = true;
+            writeAllCoinsToFile();
+
+            uiController.GetComponent<UIController>().setUpGameOverText();
+            
             Debug.Log("Dead: " + isDead);
+
             player.GetComponent<PlayerController>().enabled = false;
             player.SetActive(false);
-            
+
+            wasDead = true;
         }
-        isDead = false;
     }
 
     void PauseGame()
