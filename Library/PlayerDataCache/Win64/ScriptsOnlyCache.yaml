@@ -1,11 +1,14 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BackgroundController
     - GameManager
+    - InfoGetter
     - LevelManager
     - PlatformController
     - PlayerController
     - Scroller
+    - ShopSceneController
     - TileSpawner
     - UIController
     Unity.Rider.Editor.dll:
@@ -15,7 +18,16 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     - TMPro.TextMeshProUGUI
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -63,13 +75,28 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: LevelManager
+    methodName: loadShopScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelManager
+    methodName: changeScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelManager
     methodName: loadMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: LevelManager
     methodName: loadPlayScene
   - assembly: Assembly-CSharp
-    fullTypeName: LevelManager
-    methodName: changeScene
+    fullTypeName: ShopSceneController
+    methodName: redClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: ShopSceneController
+    methodName: goldClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: ShopSceneController
+    methodName: greenClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: ShopSceneController
+    methodName: loadMenuScene
   sceneClasses:
     Assets/Scenes/PlayScene.unity:
     - Class: 1
@@ -90,17 +117,21 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 49
-      Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -110,8 +141,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1582}
     - Class: 114
       Script: {instanceID: 1752}
-    - Class: 114
-      Script: {instanceID: 2154}
     - Class: 114
       Script: {instanceID: 2164}
     - Class: 114
@@ -127,24 +156,87 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3042}
     - Class: 114
-      Script: {instanceID: 4014}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 4260}
+      Script: {instanceID: 5470}
+    - Class: 114
+      Script: {instanceID: 5538}
+    - Class: 114
+      Script: {instanceID: 5616}
+    - Class: 114
+      Script: {instanceID: 5924}
+    - Class: 114
+      Script: {instanceID: 6312}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/ShopScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1582}
+    - Class: 114
+      Script: {instanceID: 2568}
+    - Class: 114
+      Script: {instanceID: 2764}
+    - Class: 114
+      Script: {instanceID: 3042}
+    - Class: 114
+      Script: {instanceID: 3464}
     - Class: 114
       Script: {instanceID: 4936}
     - Class: 114
       Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 5614}
+      Script: {instanceID: 5616}
     - Class: 114
-      Script: {instanceID: 5922}
+      Script: {instanceID: 5924}
     - Class: 114
-      Script: {instanceID: 6310}
+      Script: {instanceID: 44774}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -171,6 +263,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
@@ -182,6 +276,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1582}
     - Class: 114
+      Script: {instanceID: 2154}
+    - Class: 114
       Script: {instanceID: 2284}
     - Class: 114
       Script: {instanceID: 2568}
@@ -192,16 +288,24 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3042}
     - Class: 114
+      Script: {instanceID: 4014}
+    - Class: 114
+      Script: {instanceID: 4260}
+    - Class: 114
       Script: {instanceID: 4652}
     - Class: 114
       Script: {instanceID: 4936}
     - Class: 114
       Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 5614}
+      Script: {instanceID: 5616}
     - Class: 114
-      Script: {instanceID: 5922}
+      Script: {instanceID: 5924}
+    - Class: 114
+      Script: {instanceID: 25740}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -254,7 +358,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 54ce45a656a49dcc8654ba474ee97f56
+      Hash: c3dc43c2f053c6cebf08d0f0f4a915fa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -332,7 +436,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 85cb860d3fc8eca4bd4c559a6badc0c8
+      Hash: 65d6e8b974088f1f74d206443f91d79c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIController
@@ -440,7 +544,7 @@ ScriptsOnlyBuild:
     className: UnityOnDropdownValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: ff626e7b9905ccd24a4de0bdeb8f20d0
+      Hash: 7411dd2223da95adc66da78b808681d8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
@@ -788,6 +892,12 @@ ScriptsOnlyBuild:
     className: CanvasScaler
   - hash:
       serializedVersion: 2
+      Hash: 76d5cc36a4635bbc42b40454c0516b10
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BackgroundController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -872,7 +982,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: b4f57a4bc8dc04a6ead33a67ce946ca7
+      Hash: 1c78a52f0cce7af3f19ad0bc28e4562a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1038,8 +1148,27 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 47fe1cd2ae8990dd4fd0fb1863d93626
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InfoGetter
+  - hash:
+      serializedVersion: 2
+      Hash: af1e9661457413c7e9a9be9fb3e1c7b0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ShopSceneController
+  - hash:
+      serializedVersion: 2
+      Hash: da7fed831ca33bbaf40770674137dc05
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HoverController
   platform: 19
   scenePathNames:
-  - Assets/Scenes/PlayScene.unity
   - Assets/Scenes/StartMenu.unity
-  playerPath: C:/Users/Administrator/Desktop/Egyetem/IV. Sem/3DGD/Doodle Jump Unity/Build/DoodleJump.exe
+  - Assets/Scenes/PlayScene.unity
+  - Assets/Scenes/ShopScene.unity
+  playerPath: C:/Users/Administrator/Desktop/Egyetem/IV. Sem/3DGD/Build/DoodleJump.exe

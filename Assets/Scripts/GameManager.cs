@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int modelChosen = 0;
 
-    public int allCoins = 0;
+    //public int allCoins = 0;
 
     //private float speed = 2 * Time.deltaTime; // camera moving speed
     float currentPosX = 0;
@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         // player = new GameObject();
         // getCount = GameObject.FindGameObjectsWithTag("tile");
         // Debug.Log("Number of tiles: " + getCount.Length);
@@ -59,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         currentHeight = player[getModelChosen()].transform.position.y;
         secondaryHeight = currentHeight;
-        readAllCoinsFromFile();
+        // readAllCoinsFromFile();
         
 
         /*
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+
     private void setUpPlayerArray()
     {
         /*
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    static readonly string modelFile = @"Assets\Model.txt";
+    static readonly string modelFile = "Model.txt";
     private int getModelChosen()
     { 
         if (File.Exists(modelFile))
@@ -143,10 +145,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    static readonly string rootFolder = @"Assets\";
-    static readonly string saveFile = @"Assets\CoinsSave.txt";
+    //static readonly string rootFolder = @"";
+    static readonly string saveFile ="CoinsSave.txt";
 
-
+    /*
     private void readAllCoinsFromFile()
     {
         if (File.Exists(saveFile))
@@ -164,10 +166,12 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    */
 
+    /*
     public void writeAllCoinsToFile()
     {
-        string path = "Assets/CoinsSave.txt";
+        string path = "CoinsSave.txt";
         string allCoinsString;
 
         calculateAllCoins();
@@ -179,18 +183,26 @@ public class GameManager : MonoBehaviour
         writer.WriteLine(allCoinsString, true);
         writer.Close();
     }
+    */
 
+    /*
     public void calculateAllCoins()
     {
         allCoins = player[modelChosen].GetComponent<PlayerController>().allCoinsGotGiver();
     }
+    */
 
+    public void allCoinsGotCalculator()
+    {
+         
+    }
+    /*
     public int giveAllCoinsToPlayerController()
     {
         calculateAllCoins();
         return allCoins;
     }
-
+    */
     public void checkIfCameraMovable()
     {
         if(currentHeight - secondaryHeight > 3.6f)
@@ -289,16 +301,17 @@ public class GameManager : MonoBehaviour
         if (player[modelChosen].GetComponent<PlayerController>().getDeathStatus() && !wasDead) // true if dead
         {
             isDead = true;
-            writeAllCoinsToFile();
+            // writeAllCoinsToFile();
 
             uiController.GetComponent<UIController>().setUpGameOverText();
             
             Debug.Log("Dead: " + isDead);
 
-            player[modelChosen].GetComponent<PlayerController>().enabled = false;
-            player[modelChosen].SetActive(false);
+            // player[modelChosen].GetComponent<PlayerController>().enabled = false;
+            // player[modelChosen].SetActive(false);
 
             wasDead = true;
+            Time.timeScale = 0f;
         }
     }
 

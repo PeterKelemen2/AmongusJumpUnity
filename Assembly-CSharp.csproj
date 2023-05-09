@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\InfoGetter.cs" />
     <Compile Include="Assets\Scripts\ShopSceneController.cs" />
     <Compile Include="Assets\Scripts\HoverController.cs" />
+    <Compile Include="Assets\Scripts\CoinCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

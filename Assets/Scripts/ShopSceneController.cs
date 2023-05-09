@@ -61,7 +61,7 @@ public class ShopSceneController : MonoBehaviour
 
     public void writeModelChosenToFile()
     {
-        string path = "Assets/Model.txt";
+        string path = "Model.txt";
         string modelNumberString;
 
         File.WriteAllText(path, String.Empty);

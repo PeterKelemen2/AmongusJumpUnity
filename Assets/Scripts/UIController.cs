@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,11 +45,8 @@ public class UIController : MonoBehaviour
 
     public void calculateCoinsGot()
     {
-        // uiController.GetComponent<UIController>().setUpGameOverText()
-        coins = player.GetComponent<PlayerController>().getCoinsCollected();
-
-        coinsGot.SetText("Coins: " + player.GetComponent<PlayerController>().getCoinsCollected());
-        allCoinsText.SetText("All coins: " + player.GetComponent<PlayerController>().allCoinsGotGiver());
+        coinsGot.SetText("Coins: " + player.GetComponent<CoinCollector>().getSessionCoins());
+        allCoinsText.SetText("All coins: " + player.GetComponent<CoinCollector>().getAllCoins());
     }
 
     public void setUpGameOverText()

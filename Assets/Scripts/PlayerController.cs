@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 // using UnityEditor.UIElements;
 // using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 // using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -31,13 +33,14 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        readAllCoinsFromFile();
+        // readAllCoinsFromFile();
 
         Physics.gravity *= physicsMultiplier;
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
+        
 
         
     }
@@ -52,28 +55,21 @@ public class PlayerController : MonoBehaviour
 
             rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
         }
-        
-        if (other.CompareTag("Coin"))
-        {
-            Debug.Log("Coin aquired");
-            other.gameObject.SetActive(false);
-            coinsCollected++;
-            allCoinsGot++;
-
-        }
 
         if (other.CompareTag("MainCamera"))
         {
             playerIsDead = true;
         }
     }
-    static readonly string saveFile = @"Assets\CoinsSave.txt";
+    static readonly string saveFile = "CoinsSave.txt";
 
     public bool getDeathStatus()
     {
         if (playerIsDead)
         {
+            
             return true;
+            
         }
         return false;
     }
@@ -88,20 +84,42 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player Controller allCoinsGot = " + allCoinsGot);
         }
     }
+    public void writeAllCoinsToFile(int amountToWrite)
+    {
+        string path = "CoinsSave.txt";
+        string allCoinsString;
+
+        allCoinsString = allCoinsGot.ToString();
+
+        //Write some text to the test.txt file
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(allCoinsString, true);
+        writer.Close();
+    }
 
     public int getCoinsCollected()
     {
         return coinsCollected;
     }
-
+    /*
     public int getAllCoinsFromGameManager()
     {
         return gameManager.giveAllCoinsToPlayerController();
     }
-
+    */
     public int allCoinsGotGiver()
     {
         return allCoinsGot;
+    }
+
+    public int getAllCoins()
+    {
+        return allCoinsGot;
+    }
+
+    public int getSessionCoins()
+    {
+        return coinsCollected;
     }
 
     void Update()
@@ -127,6 +145,11 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.left * speed * Time.deltaTime);
 
             // rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
         }
     }
 

@@ -346,6 +346,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/BackgroundController.cs"
+"Assets/Scripts/CoinCollector.cs"
 "Assets/Scripts/DetectCollision.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/HoverController.cs"

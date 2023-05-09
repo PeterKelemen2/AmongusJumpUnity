@@ -23,7 +23,7 @@ public class InfoGetter : MonoBehaviour
         
     }
 
-    static readonly string saveFile = @"Assets\CoinsSave.txt";
+    static readonly string saveFile = "CoinsSave.txt";
     private void readAllCoinsFromFile()
     {
         if (File.Exists(saveFile))
