@@ -26,6 +26,9 @@ public class TileSpawner : MonoBehaviour
 
     private GameObject[] getCount;
 
+    private int MaxAmountOfObjects = 20;
+    private List<GameObject> SpawnedObjects = new List<GameObject>();
+
     void Start()
     {
         playerPosAux = player.transform.position.y;
@@ -41,7 +44,7 @@ public class TileSpawner : MonoBehaviour
         //previousTilesPosY = previousTiles.transform.position.y;
 
         
-        if(playerPosY - playerPosAux > 5f) 
+        if(playerPosY - playerPosAux > 4f) 
         {
             // if the player moved enough so that he wouldn't
             // see it pop in
@@ -60,9 +63,11 @@ public class TileSpawner : MonoBehaviour
         {
             //manageTiles(gameObject);
 
-            Instantiate(gameObject,
+            GameObject spawnTile = Instantiate(gameObject,
                 new Vector3(0f, 7f, 0f),
-                gameObject.transform.rotation);
+                Quaternion.identity);
+
+            SpawnedObjects.Add(spawnTile.gameObject);
 
             firstSpawn = false;
             
@@ -71,15 +76,29 @@ public class TileSpawner : MonoBehaviour
         {
             //manageTiles(gameObject);
 
-            Instantiate(gameObject,
+            GameObject spawnTile = Instantiate(gameObject,
                 new Vector3(0f, 7f + spawnOffset, 0f),
-                gameObject.transform.rotation);
+                Quaternion.identity);
+
+            SpawnedObjects.Add(spawnTile.gameObject);
+
             spawnOffset += 8f;
 
-            
+            destroyFirstInstance();
+
         }
         
+    }
 
+    public void destroyFirstInstance()
+    {
+        if (SpawnedObjects.Count == MaxAmountOfObjects)
+        {
+            //Debug.Log(SpawnedObjects.Count);
+
+            Destroy(SpawnedObjects[0].gameObject);
+            SpawnedObjects.RemoveAt(0);
+        }
     }
 
 

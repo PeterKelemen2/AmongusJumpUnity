@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public float maxHeight = 0;
 
+    [SerializeField] private int coinsCollected = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,13 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * upForce, ForceMode.Impulse);
         }
         
+        if (other.CompareTag("Coin"))
+        {
+            Debug.Log("Coin aquired");
+            other.gameObject.SetActive(false);
+            coinsCollected++;
+
+        }
     }
 
     void Update()

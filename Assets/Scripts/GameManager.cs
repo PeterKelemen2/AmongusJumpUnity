@@ -166,12 +166,16 @@ public class GameManager : MonoBehaviour
         isDead = false;
     }
 
-    public void setUpGameOverText()
+    void PauseGame()
     {
-
+        Time.timeScale = 0;
+    }
+    void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 
-    
+
 }
 
     

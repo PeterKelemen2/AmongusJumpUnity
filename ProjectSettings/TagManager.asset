@@ -13,6 +13,8 @@ TagManager:
   - TC5
   - StartCamera
   - TileComb
+  - galaxyBackground
+  - Coin
   layers:
   - Default
   - TransparentFX
