@@ -27,6 +27,7 @@ public class UIController : MonoBehaviour
         menuButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
 
+       
         //coins = gameObject.GetComponent<PlayerController>().allCoinsGotGiver();
     }
 

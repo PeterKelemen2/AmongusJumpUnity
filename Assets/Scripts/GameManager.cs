@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 // using UnityEditor.UIElements;
@@ -15,14 +16,21 @@ public class GameManager : MonoBehaviour
     public GameObject tile;
     private GameObject[] getCount;
     public GameObject camera;
-    public GameObject player;
+
+    public GameObject player; // need to set this to an array
+    public GameObject[] playerArray;
+
     public GameObject uiController;
     public bool isDead = false;
     private bool movable = false;
     private bool alreadyChecked = false;
 
-    public int allCoins = 0;
+    public GameObject redPlayer;
+    public GameObject goldPlayer;
+    public GameObject greenPlayer;
+    [SerializeField] private int modelChosen = 0;
 
+    public int allCoins = 0;
 
     //private float speed = 2 * Time.deltaTime; // camera moving speed
     float currentPosX = 0;
@@ -42,13 +50,25 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        // player = new GameObject();
         // getCount = GameObject.FindGameObjectsWithTag("tile");
         // Debug.Log("Number of tiles: " + getCount.Length);
+        
+        // player = goldPlayer;
 
         currentHeight = player.transform.position.y;
         secondaryHeight = currentHeight;
         readAllCoinsFromFile();
+        getModelChosen();
+        
+        redPlayer.SetActive(false);
+        goldPlayer.SetActive(false);
+        greenPlayer.SetActive(false);
+
+        playerArray[0] = goldPlayer;
+        playerArray[1] = greenPlayer;
+
+        playerArray[0].SetActive(true);
 
         /*
          Instantiate(tileCombination, 
@@ -60,6 +80,9 @@ public class GameManager : MonoBehaviour
          Instantiate(animals[idx], 
             new Vector3(Random.Range(-17f,17f), 0, 20), 
             animals[idx].transform.rotation);*/
+
+        playerArray[0] = goldPlayer;
+        playerArray[0].SetActive(true);
 
     }
 
@@ -77,6 +100,36 @@ public class GameManager : MonoBehaviour
         
     }
 
+    static readonly string modelFile = @"Assets\Model.txt";
+    private void getModelChosen()
+    { 
+        if (File.Exists(modelFile))
+        {
+            string modelChosenString = File.ReadLines(modelFile).Last();
+            modelChosen = Int32.Parse(modelChosenString);  
+        }
+        /*
+
+        switch (modelChosen)
+        {
+            case 0:
+                // Red
+                redPlayer.gameObject.SetActive(true);
+                player = redPlayer;
+                break;
+            case 1:
+                // Gold
+                goldPlayer.gameObject.SetActive(true);
+                player = goldPlayer;
+                break;
+            case 2:
+                // Green
+                greenPlayer.gameObject.SetActive(true);
+                player = greenPlayer;               
+                break;
+        }
+    */
+    }
     public int calculatePlayerPoints()
     {
         
@@ -134,30 +187,6 @@ public class GameManager : MonoBehaviour
         return allCoins;
     }
 
-    /*
-    public void aux()
-    {
-        
-
-        if (File.Exists(textFile))
-        {
-            // Read file using StreamReader. Reads file line by line
-            using (StreamReader file = new StreamReader(textFile))
-            {
-                int counter = 0;
-                string ln;
-
-                while ((ln = file.ReadLine()) != null)
-                {
-                    Console.WriteLine(ln);
-                    counter++;
-                }
-                file.Close();
-                Console.WriteLine("File has {counter} lines.");
-            }
-        }
-    }
-    */
     public void checkIfCameraMovable()
     {
         if(currentHeight - secondaryHeight > 3.6f)

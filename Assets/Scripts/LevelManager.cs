@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     public string playScene;
     public string menuScene;
+    public string shopScene;
 
     // Start is called before the first frame update
     void Start()
@@ -31,16 +32,16 @@ public class LevelManager : MonoBehaviour
 
     public void loadPlayScene()
     {
-        //SceneManager.UnloadSceneAsync(playScene);
-        //SceneManager.UnloadSceneAsync(playScene);
-        SceneManager.LoadScene(playScene);
-        
+        SceneManager.LoadScene(playScene);   
     }
 
     public void loadMenuScene()
     {
-        //SceneManager.UnloadSceneAsync(playScene);
-        SceneManager.LoadScene(menuScene);
-        
+        SceneManager.LoadScene(menuScene);      
+    }
+
+    public void loadShopScene()
+    {
+        SceneManager.LoadScene(shopScene);
     }
 }

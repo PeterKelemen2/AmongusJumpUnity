@@ -348,11 +348,13 @@
 "Assets/Scripts/BackgroundController.cs"
 "Assets/Scripts/DetectCollision.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/HoverController.cs"
 "Assets/Scripts/InfoGetter.cs"
 "Assets/Scripts/LevelManager.cs"
 "Assets/Scripts/PlatformController.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/Scroller.cs"
+"Assets/Scripts/ShopSceneController.cs"
 "Assets/Scripts/TileSpawner.cs"
 "Assets/Scripts/UIController.cs"
 -langversion:9.0

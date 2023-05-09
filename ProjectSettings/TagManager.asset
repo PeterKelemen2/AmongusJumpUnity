@@ -15,6 +15,12 @@ TagManager:
   - TileComb
   - galaxyBackground
   - Coin
+  - redButton
+  - goldButton
+  - greenButton
+  - RedModel
+  - GoldModel
+  - GreenModel
   layers:
   - Default
   - TransparentFX
