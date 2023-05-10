@@ -766,21 +766,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &587803751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587803746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0589c7eb0523d1b45ab42634b96be0ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allCoinsGot: 0
-  coinsCollected: 0
-  player: {fileID: 587803746}
 --- !u!1001 &614054397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1284,6 +1269,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 179.42502, y: 92.807915, z: 103.5116}
   m_Center: {x: 4.2582, y: -26.2347, z: 7.3745694}
+--- !u!114 &854879814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854879808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0589c7eb0523d1b45ab42634b96be0ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCoinsGot: 0
+  coinsCollected: 0
+  player: {fileID: 854879808}
 --- !u!1 &919139319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,7 +1323,6 @@ MonoBehaviour:
   uiController: {fileID: 484076395}
   isDead: 1
   modelChosen: 0
-  allCoins: 0
   currentHeight: 0
   secondaryHeight: 0
   maxHeight: 0
@@ -1584,21 +1583,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &1035347500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035347495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0589c7eb0523d1b45ab42634b96be0ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allCoinsGot: 0
-  coinsCollected: 0
-  player: {fileID: 1035347495}
 --- !u!1 &1181486280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,18 +2676,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &2065715873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065715868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0589c7eb0523d1b45ab42634b96be0ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allCoinsGot: 0
-  coinsCollected: 0
-  player: {fileID: 2065715868}

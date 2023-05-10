@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public string sceneToLoad;
-    public string sceneToUnload;
+    // public string sceneToLoad;
+    // public string sceneToUnload;
 
     public string playScene;
     public string menuScene;
@@ -23,13 +23,13 @@ public class LevelManager : MonoBehaviour
     {
         
     }
-
+    /*
     public void changeScene()
     {
         SceneManager.LoadScene(sceneToLoad);
         SceneManager.UnloadSceneAsync(sceneToUnload);
     }
-
+    */
     public void loadPlayScene()
     {
         SceneManager.LoadScene(playScene);   

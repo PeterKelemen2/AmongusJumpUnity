@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BackgroundController
+    - CoinCollector
     - GameManager
     - InfoGetter
     - LevelManager
@@ -167,6 +168,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 5924}
     - Class: 114
       Script: {instanceID: 6312}
+    - Class: 114
+      Script: {instanceID: 105242}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -982,7 +985,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 1c78a52f0cce7af3f19ad0bc28e4562a
+      Hash: ae28049843497d5ff505e1a63e99e8b0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1166,6 +1169,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HoverController
+  - hash:
+      serializedVersion: 2
+      Hash: 08f55b6434ae310ca0196182eaa1410c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CoinCollector
   platform: 19
   scenePathNames:
   - Assets/Scenes/StartMenu.unity

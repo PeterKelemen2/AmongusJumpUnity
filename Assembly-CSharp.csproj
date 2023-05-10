@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\MenuScroller.cs" />
     <Compile Include="Assets\Scripts\PlatformController.cs" />
     <Compile Include="Assets\Scripts\TileSpawner.cs" />
     <Compile Include="Assets\Scripts\UIController.cs" />
@@ -64,11 +65,11 @@
     <Compile Include="Assets\Scripts\DetectCollision.cs" />
     <Compile Include="Assets\Scripts\Scroller.cs" />
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
+    <Compile Include="Assets\Scripts\ShopSceneController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InfoGetter.cs" />
-    <Compile Include="Assets\Scripts\ShopSceneController.cs" />
-    <Compile Include="Assets\Scripts\HoverController.cs" />
     <Compile Include="Assets\Scripts\CoinCollector.cs" />
+    <Compile Include="Assets\Scripts\HoverController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
