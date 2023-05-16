@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
         return coinsCollected;
     }
 
+
     void Update()
     {
         checkMaxHeight();

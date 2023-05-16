@@ -66,11 +66,11 @@
     <Compile Include="Assets\Scripts\Scroller.cs" />
     <Compile Include="Assets\Scripts\BackgroundController.cs" />
     <Compile Include="Assets\Scripts\ShopSceneController.cs" />
+    <Compile Include="Assets\Scripts\HighscoreController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InfoGetter.cs" />
     <Compile Include="Assets\Scripts\CoinCollector.cs" />
     <Compile Include="Assets\Scripts\HoverController.cs" />
-    <Compile Include="Assets\Scripts\HighscoreController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

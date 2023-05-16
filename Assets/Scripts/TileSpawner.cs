@@ -44,7 +44,7 @@ public class TileSpawner : MonoBehaviour
         //previousTilesPosY = previousTiles.transform.position.y;
 
         
-        if(playerPosY - playerPosAux > 4.2f) 
+        if(playerPosY - playerPosAux > 4f) 
         {
             playerPosAux = playerPosY - 0.1f;
             selectTilesBetween(0, 4);
@@ -96,7 +96,7 @@ public class TileSpawner : MonoBehaviour
 
     public void destroyIfLowEnough()
     {
-        if(camera.transform.position.y - SpawnedObjects[0].transform.position.y > 10f)
+        if(camera.transform.position.y - SpawnedObjects[0].transform.position.y > 20f)
         {
             Destroy(SpawnedObjects[0].gameObject);
             SpawnedObjects.RemoveAt(0);
