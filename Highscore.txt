@@ -1,0 +1,2 @@
+Peti 100
+NemPeti 200

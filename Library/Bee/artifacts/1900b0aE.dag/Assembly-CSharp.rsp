@@ -349,6 +349,7 @@
 "Assets/Scripts/CoinCollector.cs"
 "Assets/Scripts/DetectCollision.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/HighscoreController.cs"
 "Assets/Scripts/HoverController.cs"
 "Assets/Scripts/InfoGetter.cs"
 "Assets/Scripts/LevelManager.cs"

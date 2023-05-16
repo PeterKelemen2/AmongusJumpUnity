@@ -83,6 +83,10 @@ public class PlayerController : MonoBehaviour
             allCoinsGot = Int32.Parse(amount);
             Debug.Log("Player Controller allCoinsGot = " + allCoinsGot);
         }
+        else
+        {
+            File.Create(saveFile);
+        }
     }
     public void writeAllCoinsToFile(int amountToWrite)
     {
