@@ -48,31 +48,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1f;
-        // player = new GameObject();
-        // getCount = GameObject.FindGameObjectsWithTag("tile");
-        // Debug.Log("Number of tiles: " + getCount.Length);
-
-        // player = goldPlayer;
-
         
         getModelChosen();
         setUpPlayerArray();
 
         currentHeight = player[getModelChosen()].transform.position.y;
         secondaryHeight = currentHeight;
-        // readAllCoinsFromFile();
-        
 
-        /*
-         Instantiate(tileCombination, 
-            new Vector3(-7.6f, -0.4f, 56f),
-            tileCombination.transform.rotation);
-        */
-
-        /*
-         Instantiate(animals[idx], 
-            new Vector3(Random.Range(-17f,17f), 0, 20), 
-            animals[idx].transform.rotation);*/
     }
 
     void Update()
@@ -92,11 +74,7 @@ public class GameManager : MonoBehaviour
 
     private void setUpPlayerArray()
     {
-        /*
-        player[0] = redPlayer;
-        player[1] = goldPlayer;
-        player[2] = greenPlayer;
-        */
+
         player[0].SetActive(false);
         player[1].SetActive(false);
         player[2].SetActive(false);
@@ -114,27 +92,7 @@ public class GameManager : MonoBehaviour
             modelChosen = Int32.Parse(modelChosenString);  
         }
         return modelChosen;
-        /*
 
-        switch (modelChosen)
-        {
-            case 0:
-                // Red
-                redPlayer.gameObject.SetActive(true);
-                player = redPlayer;
-                break;
-            case 1:
-                // Gold
-                goldPlayer.gameObject.SetActive(true);
-                player = goldPlayer;
-                break;
-            case 2:
-                // Green
-                greenPlayer.gameObject.SetActive(true);
-                player = greenPlayer;               
-                break;
-        }
-    */
     }
     public int calculatePlayerPoints()
     {
@@ -148,61 +106,6 @@ public class GameManager : MonoBehaviour
     //static readonly string rootFolder = @"";
     static readonly string saveFile ="CoinsSave.txt";
 
-    /*
-    private void readAllCoinsFromFile()
-    {
-        if (File.Exists(saveFile))
-        {
-            Debug.Log("File Found!");
-            string[] lines = File.ReadAllLines(saveFile);
-            foreach(string line in lines)
-            {
-                if(line.Equals(lines))
-                {
-                    allCoins = Int32.Parse(line);
-                    Debug.Log(allCoins);
-                }
-                
-            }
-        }
-    }
-    */
-
-    /*
-    public void writeAllCoinsToFile()
-    {
-        string path = "CoinsSave.txt";
-        string allCoinsString;
-
-        calculateAllCoins();
-
-        allCoinsString = allCoins.ToString();
-
-        //Write some text to the test.txt file
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine(allCoinsString, true);
-        writer.Close();
-    }
-    */
-
-    /*
-    public void calculateAllCoins()
-    {
-        allCoins = player[modelChosen].GetComponent<PlayerController>().allCoinsGotGiver();
-    }
-    */
-
-    public void allCoinsGotCalculator()
-    {
-         
-    }
-    /*
-    public int giveAllCoinsToPlayerController()
-    {
-        calculateAllCoins();
-        return allCoins;
-    }
-    */
     public void checkIfCameraMovable()
     {
         if(currentHeight - secondaryHeight > 3.6f)
@@ -270,29 +173,6 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
     }
-
-    // Got a better solution than this
-    /* 
-    public void checkIfDead()
-    {
-        if (!isDead && !wasDead) { 
-            if (camera.transform.position.y - player.transform.position.y > 5f)
-            {
-                writeAllCoinsToFile();
-            
-                uiController.GetComponent<UIController>().setUpGameOverText();
-                isDead = true;
-                Debug.Log("Dead: " + isDead);
-                player.GetComponent<PlayerController>().enabled = false;
-                player.SetActive(false);
-
-                wasDead = true;
-            }
-            
-
-        }
-    }
-    */
 
     public bool wasDead = false;
 

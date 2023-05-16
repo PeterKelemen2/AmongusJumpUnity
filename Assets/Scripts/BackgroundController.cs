@@ -17,7 +17,7 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private float secondY;
 
     [SerializeField] private List<GameObject> SpawnedObjects = new List<GameObject>();
-    private int MaxAmountOfObjects = 5;
+    private int MaxAmountOfObjects = 15;
 
     private bool hasRun = false;
 
@@ -44,7 +44,7 @@ public class BackgroundController : MonoBehaviour
 
     public void checkIfSpawnable()
     {
-        if ((firstY - secondY) >= 25f)
+        if ((firstY - secondY) >= 27f)
         {
             Debug.Log("Background piece spawnable !");
             spawnBackground(background);
@@ -67,16 +67,28 @@ public class BackgroundController : MonoBehaviour
 
         offset += offsetVar;
 
-        destroyFirstInstance();
-
+        // destroyFirstInstance(); 
+        //destroyIfNotOnScreen();
+        destroyIfLowEnough();
     }
 
     public void destroyFirstInstance()
     {
+        
+
         if (SpawnedObjects.Count == MaxAmountOfObjects)
         {
             Debug.Log(SpawnedObjects.Count);
             
+            Destroy(SpawnedObjects[0].gameObject);
+            SpawnedObjects.RemoveAt(0);
+        }
+    }
+
+    public void destroyIfLowEnough()
+    {
+        if(camera.transform.position.y - SpawnedObjects[0].transform.position.y > 50f)
+        {
             Destroy(SpawnedObjects[0].gameObject);
             SpawnedObjects.RemoveAt(0);
         }

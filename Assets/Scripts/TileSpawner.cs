@@ -26,7 +26,7 @@ public class TileSpawner : MonoBehaviour
 
     private GameObject[] getCount;
 
-    private int MaxAmountOfObjects = 20;
+    private int MaxAmountOfObjects = 5;
     private List<GameObject> SpawnedObjects = new List<GameObject>();
 
     void Start()
@@ -44,24 +44,18 @@ public class TileSpawner : MonoBehaviour
         //previousTilesPosY = previousTiles.transform.position.y;
 
         
-        if(playerPosY - playerPosAux > 4f) 
+        if(playerPosY - playerPosAux > 4.2f) 
         {
-            // if the player moved enough so that he wouldn't
-            // see it pop in
-
             playerPosAux = playerPosY - 0.1f;
             selectTilesBetween(0, 4);
-            // Debug.Log("SHOULD SPAWN A TILE COMBINATION!!");
-
         }
-
+        destroyIfLowEnough();
     }
 
     void spawnTileCombination(GameObject gameObject)
     {
         if (firstSpawn)
-        {
-            //manageTiles(gameObject);
+        {    
 
             GameObject spawnTile = Instantiate(gameObject,
                 new Vector3(0f, 7f, 0f),
@@ -74,8 +68,6 @@ public class TileSpawner : MonoBehaviour
         }
         else
         {
-            //manageTiles(gameObject);
-
             GameObject spawnTile = Instantiate(gameObject,
                 new Vector3(0f, 7f + spawnOffset, 0f),
                 Quaternion.identity);
@@ -84,8 +76,8 @@ public class TileSpawner : MonoBehaviour
 
             spawnOffset += 8f;
 
-            destroyFirstInstance();
-
+            //destroyFirstInstance();
+            destroyIfLowEnough();
         }
         
     }
@@ -96,6 +88,16 @@ public class TileSpawner : MonoBehaviour
         {
             //Debug.Log(SpawnedObjects.Count);
 
+            Destroy(SpawnedObjects[0].gameObject);
+            SpawnedObjects.RemoveAt(0);
+        }
+    }
+
+
+    public void destroyIfLowEnough()
+    {
+        if(camera.transform.position.y - SpawnedObjects[0].transform.position.y > 10f)
+        {
             Destroy(SpawnedObjects[0].gameObject);
             SpawnedObjects.RemoveAt(0);
         }
