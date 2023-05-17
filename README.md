@@ -1,6 +1,27 @@
 # Among Us Jump Game in Unity
 **Simple jumping game I made in Unity**
-## List of things I will add in the future: 
-1. Coins on platforms to collect
-2. Skins that you can buy with said coins
-3. More backgrounds you can choose from
+## Features
+
+### Game
+- Infinite tile spawning using preset tile combinations
+- Coins on said tiles which the player can collect
+- Highscore is saved in `Highscore.txt`
+- UI for points, coins collected in current game and all collected coins
+- Progressively chaning backround at around 150 points
+- If the player falls low enough the game is over
+- Pause menu can be toggled by pressing `E` 
+
+### Start Menu
+- Options to play, change skin or exit the game
+- Player movement help on screen
+- All coins acquired shown, it is saved in `CoinsSave.txt` 
+- Scrolling background
+
+### Changing skin
+- The player can choose from 3 different skins, that is red, gold and green. Default is red
+- When selected the model plays an animation and is highlighted
+- From here the player can go back to the Start Menu to play
+- The selected model is save in `Model.txt`
+
+## Models
+All the models in the game were made by me, including the background images as well.
