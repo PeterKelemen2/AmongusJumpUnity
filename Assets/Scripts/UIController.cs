@@ -19,6 +19,8 @@ public class UIController : MonoBehaviour
 
     public Button menuButton;
     public Button restartButton;
+    public Button quitButton;
+    public Button quitButtonIngame;
 
     private int coins;
     private int highscore;
@@ -30,6 +32,8 @@ public class UIController : MonoBehaviour
         endPointsText.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
+        highScoreText.SetText("Highscore: Not played yet");
         showHighScore(); 
     }
 
@@ -61,6 +65,9 @@ public class UIController : MonoBehaviour
 
         menuButton.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+
+        quitButtonIngame.gameObject.SetActive(false);
     }
 
     public void showHighScore()

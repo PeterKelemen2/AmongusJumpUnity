@@ -44,4 +44,10 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(shopScene);
     }
+
+    public void quitGame()
+    {
+        Debug.Log("Quitting...");
+        Application.Quit();
+    }
 }

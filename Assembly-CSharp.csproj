@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\CoinCollector.cs" />
     <Compile Include="Assets\Scripts\HoverAnimationController.cs" />
     <Compile Include="Assets\Scripts\HoverController.cs" />
+    <Compile Include="Assets\Scripts\ExitScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
