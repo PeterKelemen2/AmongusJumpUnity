@@ -15,7 +15,8 @@ public class HighscoreController : MonoBehaviour
     public int highScore;
     public int score;
     public GameManager gameManager;
-    public GameObject player;
+    //public GameObject player;
+    public GameObject[] playerArray;
     private bool isDead = false;
 
     void Start()
@@ -42,6 +43,7 @@ public class HighscoreController : MonoBehaviour
         else
         {
             File.Create(highScoreFile);
+            
             highScore = 0;
         }
         return highScore;
@@ -69,7 +71,8 @@ public class HighscoreController : MonoBehaviour
 
     private void checkIfDead()
     {
-        if (player.GetComponent<PlayerController>().getDeathStatus() && !isDead)
+        if (playerArray[gameManager.getModelChosen()].GetComponent<PlayerController>().getDeathStatus() 
+            && !isDead)
         {
             isDead = true;
             if (score > highScore)

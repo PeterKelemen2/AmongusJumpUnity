@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             File.Create(saveFile);
+            writeAllCoinsToFile(0);
         }
     }
     public void writeAllCoinsToFile(int amountToWrite)

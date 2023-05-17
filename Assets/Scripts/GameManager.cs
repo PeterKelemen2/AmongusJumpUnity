@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject tile;
     private GameObject[] getCount;
     public GameObject camera;
+    public GameObject light;
 
     public GameObject[] player; // need to set this to an array
     public GameObject mogus;
@@ -55,6 +56,10 @@ public class GameManager : MonoBehaviour
         currentHeight = player[getModelChosen()].transform.position.y;
         secondaryHeight = currentHeight;
 
+        light.SetActive(false);
+        light.SetActive(true);
+
+        mogus.SetActive(false);
     }
 
     
@@ -86,12 +91,17 @@ public class GameManager : MonoBehaviour
     }
 
     static readonly string modelFile = "Model.txt";
-    private int getModelChosen()
+    public int getModelChosen()
     { 
         if (File.Exists(modelFile))
         {
             string modelChosenString = File.ReadLines(modelFile).Last();
             modelChosen = Int32.Parse(modelChosenString);  
+        }
+        else
+        {
+            File.Create(modelFile);
+            
         }
         return modelChosen;
 

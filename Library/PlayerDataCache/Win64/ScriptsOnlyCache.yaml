@@ -464,7 +464,7 @@ ScriptsOnlyBuild:
     className: UnityOnDropMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 41c79e0dff976e7e60fdec55d66f0b3f
+      Hash: ac7210ac9119e32706b124f94ba84596
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TileSpawner
@@ -494,7 +494,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: df71643e56cbe933d1d91f909de1557a
+      Hash: fee131a56eb5af043bc052dbed72ef74
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIController
@@ -1022,7 +1022,7 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 348ba4282d1ec68224ce9db97d95093e
+      Hash: 2554f895dd5a108d58d21e629543308c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HighscoreController
@@ -1052,7 +1052,7 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: ae28049843497d5ff505e1a63e99e8b0
+      Hash: 61742aaca8c87079dc5dc1171e670a31
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1172,7 +1172,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseOverMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 08f55b6434ae310ca0196182eaa1410c
+      Hash: 5d36e787825e5afb4928db1e1aeb9fe3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CoinCollector

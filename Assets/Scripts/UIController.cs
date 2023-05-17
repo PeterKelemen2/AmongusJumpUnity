@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     public GameManager gameManager;
-    public GameObject player;
+    //public GameObject player;
+    public GameObject[] playerArray;
+
     public GameObject HighScoreObj;
     public TextMeshProUGUI points;
     public TextMeshProUGUI gameOverText;
@@ -56,7 +58,7 @@ public class UIController : MonoBehaviour
             pauseMenu();
         }
 
-        isDead = player.GetComponent<PlayerController>().getDeathStatus();
+        isDead = playerArray[gameManager.getModelChosen()].GetComponent<PlayerController>().getDeathStatus();
     }
 
     public void calculatePlayerPoints()
@@ -66,8 +68,10 @@ public class UIController : MonoBehaviour
 
     public void calculateCoinsGot()
     {
-        coinsGot.SetText("Coins: " + player.GetComponent<CoinCollector>().getSessionCoins());
-        allCoinsText.SetText("All coins: " + player.GetComponent<CoinCollector>().getAllCoins());
+        coinsGot.SetText("Coins: " + 
+            playerArray[gameManager.getModelChosen()].GetComponent<CoinCollector>().getSessionCoins());
+        allCoinsText.SetText("All coins: " + 
+            playerArray[gameManager.getModelChosen()].GetComponent<CoinCollector>().getAllCoins());
     }
 
     public void setUpGameOverText()

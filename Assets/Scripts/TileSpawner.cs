@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TileSpawner : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public GameObject TC1;
     public GameObject TC2;
     public GameObject TC3;
@@ -18,7 +20,8 @@ public class TileSpawner : MonoBehaviour
     private float spawnOffset = 8f;
     private bool thirdSpawn = false;
 
-    public GameObject player;
+    // public GameObject player;
+    public GameObject[] playerArray;
     public float playerPosY;
     public float playerPosAux;
 
@@ -31,7 +34,7 @@ public class TileSpawner : MonoBehaviour
 
     void Start()
     {
-        playerPosAux = player.transform.position.y;
+        playerPosAux = playerArray[gameManager.getModelChosen()].transform.position.y;
 
         spawnTileCombination(TC1);
         
@@ -39,7 +42,7 @@ public class TileSpawner : MonoBehaviour
     void Update()
     {
 
-        playerPosY = player.transform.position.y;
+        playerPosY = playerArray[gameManager.getModelChosen()].transform.position.y;
         //currentTilesPosY = currentTiles.transform.position.y;
         //previousTilesPosY = previousTiles.transform.position.y;
 
