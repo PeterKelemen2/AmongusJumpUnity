@@ -146,6 +146,12 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //isGamePaused();
+        }
+
     }
 
     void checkMaxHeight()
@@ -161,5 +167,6 @@ public class PlayerController : MonoBehaviour
     {
         physicsMultiplier = 0;
     }
+    
 
 }

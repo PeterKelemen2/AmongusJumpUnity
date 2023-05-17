@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
 
     }
 
+    
+
     void Update()
     {
         currentHeight = player[getModelChosen()].transform.position.y;

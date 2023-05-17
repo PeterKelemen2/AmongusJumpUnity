@@ -16,11 +16,14 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI coinsGot;
     public TextMeshProUGUI allCoinsText;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI pauseText;
 
     public Button menuButton;
     public Button restartButton;
     public Button quitButton;
     public Button quitButtonIngame;
+    public Button pausedMenu;
+    public Button pausedExit;
 
     private int coins;
     private int highscore;
@@ -33,6 +36,9 @@ public class UIController : MonoBehaviour
         menuButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(false);
+        pausedMenu.gameObject.SetActive(false);
+        pausedExit.gameObject.SetActive(false);
         highScoreText.SetText("Highscore: Not played yet");
         showHighScore(); 
     }
@@ -41,6 +47,11 @@ public class UIController : MonoBehaviour
     {
         calculatePlayerPoints();
         calculateCoinsGot();
+        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            pauseMenu();
+        }
     }
 
     public void calculatePlayerPoints()
@@ -83,5 +94,38 @@ public class UIController : MonoBehaviour
             highScoreText.SetText("Highscore: " + 
                 HighScoreObj.GetComponent<HighscoreController>().notPlayedMessage());
         }   
+    }
+    
+    private bool isPaused = false;
+    public void pauseMenu()
+    {
+        if(!isPaused)
+        {
+            enablePauseMenu();
+            isPaused = true;
+        }
+        else 
+        {
+            disablePauseMenu();
+            isPaused = false;
+        }
+    }
+
+    private void enablePauseMenu()
+    {
+        pausedMenu.gameObject.SetActive(true);
+        pausedExit.gameObject.SetActive(true);
+        pauseText.gameObject.SetActive(true);
+        quitButtonIngame.gameObject .SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    private void disablePauseMenu()
+    {
+        pausedMenu.gameObject.SetActive(false);
+        pausedExit.gameObject.SetActive(false);
+        pauseText.gameObject.SetActive(false);
+        quitButtonIngame.gameObject.SetActive(true);
+        Time.timeScale = 1f;
     }
 }
