@@ -23,5 +23,5 @@
 - All coins collected are shown on the screen.
 - Initially the backround image was meant to be scrolling, but due to a bug this feature was disabled.
 
-### Model
+### Models
 - All models were created by me, as well as the backround images.
