@@ -8,6 +8,10 @@ public class Scroller : MonoBehaviour
     [SerializeField] private RawImage background;
     [SerializeField] private float xSpeed, ySpeed;
 
+    private void Start()
+    {
+        Time.timeScale = 1f;
+    }
     // Update is called once per frame
     void Update()
     {

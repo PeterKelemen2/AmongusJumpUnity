@@ -103,31 +103,6 @@ public class TileSpawner : MonoBehaviour
         }
     }
 
-    /*
-    public void manageTiles(GameObject gameObject)
-    {
-        getCount = GameObject.FindGameObjectsWithTag("TileComb");
-        int count = getCount.Length;
-
-
-        if (count >= 3)
-        {
-            previousPreviousTiles = previousTiles;
-            previousTiles = currentTiles;
-            currentTiles = gameObject;
-
-            DestroyImmediate(previousPreviousTiles, true);
-        }
-        else
-        {
-            previousTiles = currentTiles;
-            currentTiles = gameObject;
-        }
-
-
-    }
-    */
-
     public void selectTilesBetween(int min, int max)
     {
         int next = Random.Range(min, max);
