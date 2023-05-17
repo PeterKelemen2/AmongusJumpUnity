@@ -21,7 +21,7 @@
 - From here you can start playing, select a skin or quit the game.
 - Player movement keys are shown on the screen.
 - All coins collected are shown on the screen.
-- Initially the backround image was meant to be scrolling, but due to a bug this feature was disabled.
+- The background image is scrolling.
 
 ### Models
 - All models were created by me, as well as the backround images.
