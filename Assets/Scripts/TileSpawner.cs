@@ -47,7 +47,7 @@ public class TileSpawner : MonoBehaviour
         if(playerPosY - playerPosAux > 4f) 
         {
             playerPosAux = playerPosY - 0.1f;
-            selectTilesBetween(0, 4);
+            selectTilesBetween(1, 4);
         }
         destroyIfLowEnough();
     }
@@ -103,7 +103,7 @@ public class TileSpawner : MonoBehaviour
         }
     }
 
-
+    /*
     public void manageTiles(GameObject gameObject)
     {
         getCount = GameObject.FindGameObjectsWithTag("TileComb");
@@ -126,6 +126,7 @@ public class TileSpawner : MonoBehaviour
 
 
     }
+    */
 
     public void selectTilesBetween(int min, int max)
     {

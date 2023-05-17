@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,8 @@ public class UIController : MonoBehaviour
 
     private int coins;
     private int highscore;
+
+    private bool isDead;
     
 
     void Start()
@@ -52,6 +55,8 @@ public class UIController : MonoBehaviour
         {
             pauseMenu();
         }
+
+        isDead = player.GetComponent<PlayerController>().getDeathStatus();
     }
 
     public void calculatePlayerPoints()
@@ -99,7 +104,7 @@ public class UIController : MonoBehaviour
     private bool isPaused = false;
     public void pauseMenu()
     {
-        if(!isPaused)
+        if(!isPaused && !isDead)
         {
             enablePauseMenu();
             isPaused = true;
@@ -126,6 +131,10 @@ public class UIController : MonoBehaviour
         pausedExit.gameObject.SetActive(false);
         pauseText.gameObject.SetActive(false);
         quitButtonIngame.gameObject.SetActive(true);
-        Time.timeScale = 1f;
+        if (!isDead)
+        {
+            Time.timeScale = 1f;
+        }
+        
     }
 }

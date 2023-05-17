@@ -9,7 +9,6 @@ ScriptsOnlyBuild:
     - InfoGetter
     - LevelManager
     - MenuScroller
-    - PlatformController
     - PlayerController
     - Scroller
     - ShopSceneController
@@ -89,13 +88,22 @@ ScriptsOnlyBuild:
     methodName: quitGame
   - assembly: Assembly-CSharp
     fullTypeName: LevelManager
+    methodName: quitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelManager
     methodName: loadMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: LevelManager
     methodName: quitGame
   - assembly: Assembly-CSharp
     fullTypeName: LevelManager
+    methodName: quitGame
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelManager
     methodName: loadPlayScene
+  - assembly: Assembly-CSharp
+    fullTypeName: LevelManager
+    methodName: loadMenuScene
   - assembly: Assembly-CSharp
     fullTypeName: ShopSceneController
     methodName: redClicked
@@ -180,8 +188,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1752}
     - Class: 114
-      Script: {instanceID: 2166}
-    - Class: 114
       Script: {instanceID: 2174}
     - Class: 114
       Script: {instanceID: 2304}
@@ -210,8 +216,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7194}
     - Class: 115
-      Script: {instanceID: 0}
-    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -490,7 +494,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: b8990171c9f3c2b19e805626980b9366
+      Hash: df71643e56cbe933d1d91f909de1557a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIController
