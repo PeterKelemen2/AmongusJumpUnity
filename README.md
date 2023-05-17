@@ -4,10 +4,10 @@
 
 ### Game
 - Infinite tile spawning using preset tile combinations
-- Coins on said tiles which the player can collect
+- Coins on said tiles can be collected
 - Highscore is saved in `Highscore.txt`
 - UI for points, coins collected in current game and all collected coins
-- Progressively chaning backround at around 150 points
+- Progressively changing background at around 150 points
 - If the player falls low enough the game is over
 - Pause menu can be toggled by pressing `E` 
 
@@ -21,7 +21,7 @@
 - The player can choose from 3 different skins, that is red, gold and green. Default is red
 - When selected the model plays an animation and is highlighted
 - From here the player can go back to the Start Menu to play
-- The selected model is save in `Model.txt`
+- The selected model is saved in `Model.txt`
 
 ## Models
-All the models in the game were made by me, including the background images as well.
+All models in the game were made by me, including the background images as well.
