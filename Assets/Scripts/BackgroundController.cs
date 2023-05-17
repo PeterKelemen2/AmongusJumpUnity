@@ -6,7 +6,9 @@ using UnityEngine;
 public class BackgroundController : MonoBehaviour
 {
     // spawning starts from (0,11,10)
-    public GameObject background;
+    public GameObject galaxyBackground;
+    public GameObject gradientBackground;
+    public GameObject skyBackground;
     public GameObject camera;
 
     private GameObject toDelete;
@@ -20,6 +22,8 @@ public class BackgroundController : MonoBehaviour
     private int MaxAmountOfObjects = 15;
 
     private bool hasRun = false;
+    private bool bcChanged = false;
+    private int untilChange = 3;
 
     private int i = 0;
 
@@ -47,7 +51,24 @@ public class BackgroundController : MonoBehaviour
         if ((firstY - secondY) >= 27f)
         {
             Debug.Log("Background piece spawnable !");
-            spawnBackground(background);
+            if(untilChange > 0)
+            {
+                spawnBackground(skyBackground);
+                untilChange--;
+            }
+            else
+            {
+                if(untilChange == 0)
+                {
+                    spawnBackground(gradientBackground);
+                    bcChanged = true;
+                    untilChange--;
+                }
+                if (bcChanged)
+                {
+                    spawnBackground(galaxyBackground);
+                }
+            }  
         }
     }
 
@@ -57,7 +78,7 @@ public class BackgroundController : MonoBehaviour
         Debug.Log("spawnBackground");
         Vector3 desiredDirection = new Vector3(0, 11f + offset, 10f);
 
-        GameObject back =  Instantiate(gameObject,
+        GameObject back = Instantiate(gameObject,
             desiredDirection,
             gameObject.transform.rotation);
 
@@ -74,8 +95,6 @@ public class BackgroundController : MonoBehaviour
 
     public void destroyFirstInstance()
     {
-        
-
         if (SpawnedObjects.Count == MaxAmountOfObjects)
         {
             Debug.Log(SpawnedObjects.Count);
