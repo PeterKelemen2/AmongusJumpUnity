@@ -11,6 +11,7 @@ public class CoinCollector : MonoBehaviour
     [SerializeField] private int coinsCollected = 0;
 
     public GameObject player;
+    private bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,9 +21,10 @@ public class CoinCollector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<PlayerController>().getDeathStatus())
+        if (player.GetComponent<PlayerController>().getDeathStatus() && !isDead)
         {
             writeAllCoinsToFile();
+            isDead = true;
         }
     }
 

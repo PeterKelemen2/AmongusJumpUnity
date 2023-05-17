@@ -186,6 +186,7 @@ public class GameManager : MonoBehaviour
             uiController.GetComponent<UIController>().setUpGameOverText();
             
             Debug.Log("Dead: " + isDead);
+            Debug.Log("Points were: " + calculatePlayerPoints());
 
             // player[modelChosen].GetComponent<PlayerController>().enabled = false;
             // player[modelChosen].SetActive(false);

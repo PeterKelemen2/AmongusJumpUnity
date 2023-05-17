@@ -95,7 +95,6 @@ public class PlayerController : MonoBehaviour
 
         allCoinsString = allCoinsGot.ToString();
 
-        //Write some text to the test.txt file
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine(allCoinsString, true);
         writer.Close();
@@ -105,12 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         return coinsCollected;
     }
-    /*
-    public int getAllCoinsFromGameManager()
-    {
-        return gameManager.giveAllCoinsToPlayerController();
-    }
-    */
+
     public int allCoinsGotGiver()
     {
         return allCoinsGot;
@@ -141,15 +135,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && transform.position.x < 5)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
-            
-            //rb.AddForce(Vector3.right * speed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A) && transform.position.x > -5)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-            // rb.AddForce(Vector3.left * speed, ForceMode.Impulse);
         }
 
         if (Input.GetKey(KeyCode.R))

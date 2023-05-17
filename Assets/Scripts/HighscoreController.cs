@@ -16,34 +16,27 @@ public class HighscoreController : MonoBehaviour
     public int score;
     public GameManager gameManager;
     public GameObject player;
-    private bool isDead;
+    private bool isDead = false;
 
     void Start()
     {
-        readFromFile();
-        
+        readFromFile();  
     }
 
     void Update()
     {
-        if (player.GetComponent<PlayerController>().getDeathStatus())
-        {
-            if(gameManager.calculatePlayerPoints() > highScore)
-            {
-                writeToFile(gameManager.calculatePlayerPoints());
-            }
-
-        }
+        score = gameManager.calculatePlayerPoints();
+        checkIfDead();
     }
 
-    private void readFromFile()
+    public int readFromFile()
     {
         if (File.Exists(highScoreFile))
         {
             Debug.Log("Highscore File Found!");
             
             string amount = File.ReadLines(highScoreFile).Last();
-            Debug.Log(amount);
+            Debug.Log("Highscore read from file: " + amount);
             highScore = Int32.Parse(amount);
         }
         else
@@ -51,18 +44,39 @@ public class HighscoreController : MonoBehaviour
             File.Create(highScoreFile);
             highScore = 0;
         }
+        return highScore;
     }
-    public void writeToFile(int amountToWrite)
+
+    public string notPlayedMessage()
     {
-        string path = "CoinsSave.txt";
+        string notPlayedSring = "Not played yet";
+
+        return notPlayedSring;
+    }
+
+    public void writeToFile(int intToWrite)
+    {
+        string path = "HighScore.txt";
         string highScoreString;
 
-        highScoreString = amountToWrite.ToString();
+        highScoreString = intToWrite.ToString();
+        Debug.Log("highScoreString: " + highScoreString);
 
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine(path, true);
+        StreamWriter writer = new StreamWriter(path);
+        writer.WriteLine(highScoreString);
         writer.Close();
     }
 
-    
+    private void checkIfDead()
+    {
+        if (player.GetComponent<PlayerController>().getDeathStatus() && !isDead)
+        {
+            isDead = true;
+            if (score > highScore)
+            {
+                writeToFile(score);
+                Debug.Log("Score to write: " + score);
+            }
+        }
+    }
 }

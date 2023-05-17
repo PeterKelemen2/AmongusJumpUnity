@@ -9,16 +9,19 @@ public class UIController : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject player;
+    public GameObject HighScoreObj;
     public TextMeshProUGUI points;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI endPointsText;
     public TextMeshProUGUI coinsGot;
     public TextMeshProUGUI allCoinsText;
+    public TextMeshProUGUI highScoreText;
 
     public Button menuButton;
     public Button restartButton;
 
     private int coins;
+    private int highscore;
     
 
     void Start()
@@ -27,9 +30,7 @@ public class UIController : MonoBehaviour
         endPointsText.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
-
-       
-        //coins = gameObject.GetComponent<PlayerController>().allCoinsGotGiver();
+        showHighScore(); 
     }
 
     void Update()
@@ -60,5 +61,20 @@ public class UIController : MonoBehaviour
 
         menuButton.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+    }
+
+    public void showHighScore()
+    {
+        highscore = HighScoreObj.GetComponent<HighscoreController>().readFromFile();
+
+        if(highscore > 0)
+        {
+            highScoreText.SetText("Highscore: " + highscore);
+        }
+        else
+        {
+            highScoreText.SetText("Highscore: " + 
+                HighScoreObj.GetComponent<HighscoreController>().notPlayedMessage());
+        }   
     }
 }
